@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ialdidi <ialdidi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/20 10:14:32 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/01/20 11:38:30 by ialdidi          ###   ########.fr       */
+/*   Created: 2023/11/01 11:43:21 by ialdidi           #+#    #+#             */
+/*   Updated: 2023/11/12 07:43:58 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
+#include "libft.h"
 
-
-
-int	is_valid_pid(int pid)
+void	*ft_memset(void *b, int c, size_t len)
 {
+	int		i;
 
-}
-
-int	main(int argc, char **argv)
-{
-	if (argc == 3)
-	{
-	}
+	i = 0;
+	while (len--)
+		((unsigned char *)b)[i++] = (unsigned char)c;
+	return (b);
 }

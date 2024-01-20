@@ -1,20 +1,49 @@
-#include <stdio.h>
-#include <unistd.h>
-#include <string.h>
-#include <signal.h>
+#include "minitalk.h"
 
-void signal_handler(int sig)
+int	send_message(pid_t pid, char *str)
 {
-    write(1, "Intterupted", strlen("Intterupted"));
+	int			i;
+	unsigned char mask;
+
+	while (*str)
+	{
+		i = -1;
+		mask = 1;
+		while (++i < 8)
+		{
+			if (kill(pid, SIGUSR1 + !(mask & *str)) < 0)
+				return (-1);
+			usleep(50);
+			mask <<= 1;
+		}
+		str++;
+	}
+	return (0);
 }
 
-int main(void) {
-    struct sigaction SIGUSR1_action = {0};
-    SIGUSR1_action.sa_handler = catchSIGUR1;
-    sigfillset(&SIGUSR1_action.sa_mask);
+int main(int ac, char **av) {
+	int		sid;
+	char	*msg;
 
-    
-
-    while (1);
-    return 0;
+	if (ac != 3)
+	{
+		ft_putstr_fd("The format must be as follows : ./program [pid] [message]", 1);
+	}
+	else
+	{
+		sid = ft_atoi(av[1]);
+		msg = av[2];
+		if (sid > 0 && msg[0])
+		{
+			sid = send_message(sid, msg);
+			if (sid == 0)
+				return (EXIT_SUCCESS);
+			ft_putstr_fd("Connection failed : no such process", 1);
+		}
+		else
+		{
+			ft_putstr_fd("Invalid process id or An empty message provided", 1);
+		}
+	}
+    return (EXIT_FAILURE);
 }

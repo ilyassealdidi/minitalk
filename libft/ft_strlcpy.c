@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ialdidi <ialdidi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/20 10:14:32 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/01/20 11:38:30 by ialdidi          ###   ########.fr       */
+/*   Created: 2023/11/06 19:04:31 by ialdidi           #+#    #+#             */
+/*   Updated: 2023/11/11 08:57:33 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
+#include "libft.h"
 
-
-
-int	is_valid_pid(int pid)
+size_t	ft_strlcpy(char *dst, const char *src, size_t len)
 {
+	size_t	slen;
+	size_t	i;
 
-}
-
-int	main(int argc, char **argv)
-{
-	if (argc == 3)
+	i = 0;
+	slen = ft_strlen(src);
+	if (len)
 	{
+		while (*src && ++i < len)
+			*dst++ = *src++;
+		*dst = 0;
 	}
+	return (slen);
 }

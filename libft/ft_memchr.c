@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ialdidi <ialdidi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/20 10:14:32 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/01/20 11:38:30 by ialdidi          ###   ########.fr       */
+/*   Created: 2023/11/07 10:58:52 by ialdidi           #+#    #+#             */
+/*   Updated: 2023/11/13 08:51:46 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
+#include "libft.h"
 
-
-
-int	is_valid_pid(int pid)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
+	unsigned char	*ptr;
 
-}
-
-int	main(int argc, char **argv)
-{
-	if (argc == 3)
+	ptr = (unsigned char *)s;
+	while (n--)
 	{
+		if (*ptr == (unsigned char)c)
+			return (ptr);
+		ptr++;
 	}
+	return (NULL);
 }

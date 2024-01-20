@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/20 10:14:32 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/01/20 11:38:30 by ialdidi          ###   ########.fr       */
+/*   Created: 2024/01/20 15:38:31 by ialdidi           #+#    #+#             */
+/*   Updated: 2024/01/20 17:14:37 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
+#ifndef MINITALK_H
+# define MINITALK_H
 
+# include <signal.h>
+# include <unistd.h>
+# include "libft/libft.h"
 
-
-int	is_valid_pid(int pid)
-{
-
-}
-
-int	main(int argc, char **argv)
-{
-	if (argc == 3)
-	{
-	}
-}
+#endif

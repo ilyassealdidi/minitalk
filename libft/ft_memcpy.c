@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ialdidi <ialdidi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/20 10:14:32 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/01/20 11:38:30 by ialdidi          ###   ########.fr       */
+/*   Created: 2023/11/01 11:50:41 by ialdidi           #+#    #+#             */
+/*   Updated: 2023/11/11 08:57:33 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
+#include "libft.h"
 
-
-
-int	is_valid_pid(int pid)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
+	int	i;
 
-}
-
-int	main(int argc, char **argv)
-{
-	if (argc == 3)
+	if (dst == src)
+		return (dst);
+	if (!dst && !src)
+		return (NULL);
+	i = 0;
+	while (n--)
 	{
+		((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+		i++;
 	}
+	return (dst);
 }

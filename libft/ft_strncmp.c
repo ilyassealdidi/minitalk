@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ialdidi <ialdidi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/20 10:14:32 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/01/20 11:38:30 by ialdidi          ###   ########.fr       */
+/*   Created: 2023/11/07 10:34:54 by ialdidi           #+#    #+#             */
+/*   Updated: 2023/11/11 08:57:33 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
+#include "libft.h"
 
-
-
-int	is_valid_pid(int pid)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-
-}
-
-int	main(int argc, char **argv)
-{
-	if (argc == 3)
+	while ((*s1 && *s2) && (*s1 == *s2) && n--)
 	{
+		s1++;
+		s2++;
 	}
+	return (((unsigned char)(*s1) - (unsigned char)(*s2)) * (n != 0));
 }

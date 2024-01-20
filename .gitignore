@@ -1,0 +1,11 @@
+*.out
+.normignore
+.vscode/
+*.a
+*.o
+main.c
+*.dSYM
+*.out
+server
+client
+main

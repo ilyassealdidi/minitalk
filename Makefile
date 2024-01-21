@@ -1,23 +1,22 @@
 SRCS	= client.c server.c utils.c
 
-OBJS	= $(SRCS:.c=.o)
+SRCS_B	= client_bonus.c server_bnous.c utils_bonus.c
 
 NAME	= server client
 
 CFLAGS	= -Wall -Wextra -Werror
 
-all		: server client
+all		: $(NAME)
 
-server	: server.c utils.c
-	cc $(CFLAGS) $^ -o $@
+$(NAME)	: $(SRCS) minitalk.h
+	cc $(CFLAGS) server.c utils.c -o server  && cc $(CFLAGS) client.c utils.c -o client
 
-client	: client.c utils.c
-	cc $(CFLAGS) $^ -o $@
+bonus	: $(SRCS_B) minitalk_bonus.h
+	cc $(CFLAGS) server_bonus.c utils_bonus.c -o server  && cc $(CFLAGS) client_bonus.c utils_bonus.c -o client
 
 clean	:
-	$(RM) $(OBJS)
+	$(RM) $(NAME)
 
-fclean	: 
-	$(RM) $(OBJS) $(NAME)
+fclean	: clean
 
 re		: fclean all

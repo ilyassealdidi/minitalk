@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 15:38:31 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/01/20 17:14:37 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/01/21 13:19:53 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 
 # include <signal.h>
 # include <unistd.h>
-# include "libft/libft.h"
+# include <stdlib.h>
+
+void	ft_putchar(char c);
+void	ft_putstr(char *s);
+void	ft_putnbr(int n);
+int		ft_atoi(const char *str);
 
 #endif

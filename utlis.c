@@ -1,16 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   utlis.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialdidi <ialdidi@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/11 08:55:36 by ialdidi           #+#    #+#             */
-/*   Updated: 2023/11/11 08:55:37 by ialdidi          ###   ########.fr       */
+/*   Created: 2024/01/21 13:05:22 by ialdidi           #+#    #+#             */
+/*   Updated: 2024/01/21 13:21:36 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+void	ft_putstr(char *s)
+{
+	while (*s)
+		ft_putchar(*s++);
+}
+
+void	ft_putnbr(int n)
+{
+	long	nbr;
+
+	nbr = n;
+	if (n < 0)
+	{
+		ft_putchar('-');
+		nbr = -nbr;
+	}
+	if (nbr >= 10)
+	{
+		ft_putnbr(nbr / 10);
+		ft_putnbr(nbr % 10);
+	}
+	else
+		ft_putchar(nbr + '0');
+}
 
 int	ft_atoi(const char *str)
 {
@@ -23,9 +51,9 @@ int	ft_atoi(const char *str)
 		str++;
 	if (*str == '-' || *str == '+')
 		sign = 1 - 2 * (*str++ == '-');
-	while (ft_isdigit(*str))
+	while (*str >= '0' && *str <= '9')
 	{
-		if (num > 922337203685477580 
+		if (num > 922337203685477580
 			|| (num == 922337203685477580 && *str - '0' > 7))
 			return (-1 * (sign == 1));
 		num = num * 10 + *str++ - '0';

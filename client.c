@@ -6,16 +6,50 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 17:54:48 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/01/20 17:54:49 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/01/21 13:25:10 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
+void	signal_handler(int sig);
+int		send_message(pid_t pid, char *str);
+
+int	main(int ac, char **av)
+{
+	int		sid;
+	char	*msg;
+
+	if (ac != 3)
+		ft_putstr("The format must be as follows : \
+			./program [pid] [message]");
+	else
+	{
+		sid = ft_atoi(av[1]);
+		msg = av[2];
+		if (sid > 0 && msg[0])
+		{
+			signal(SIGUSR2, signal_handler);
+			sid = send_message(sid, msg);
+			if (sid == 0)
+				return (EXIT_SUCCESS);
+			ft_putstr("Connection failed : no such process");
+		}
+		else
+			ft_putstr("Invalid process id or An empty message provided");
+	}
+	return (EXIT_FAILURE);
+}
+
+void	signal_handler(int sig)
+{
+	ft_putstr("Message sent successfully !!");
+}
+
 int	send_message(pid_t pid, char *str)
 {
-	int			i;
-	unsigned char mask;
+	int				i;
+	unsigned char	mask;
 
 	while (*str)
 	{
@@ -30,32 +64,11 @@ int	send_message(pid_t pid, char *str)
 		}
 		str++;
 	}
+	i = 0;
+	while (i++ < 8)
+	{
+		kill(pid, SIGUSR2);
+		usleep(50);
+	}
 	return (0);
-}
-
-int main(int ac, char **av) {
-	int		sid;
-	char	*msg;
-
-	if (ac != 3)
-	{
-		ft_putstr_fd("The format must be as follows : ./program [pid] [message]", 1);
-	}
-	else
-	{
-		sid = ft_atoi(av[1]);
-		msg = av[2];
-		if (sid > 0 && msg[0])
-		{
-			sid = send_message(sid, msg);
-			if (sid == 0)
-				return (EXIT_SUCCESS);
-			ft_putstr_fd("Connection failed : no such process", 1);
-		}
-		else
-		{
-			ft_putstr_fd("Invalid process id or An empty message provided", 1);
-		}
-	}
-    return (EXIT_FAILURE);
 }

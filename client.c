@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 17:54:48 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/01/21 13:25:10 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/01/21 14:27:50 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ int	main(int ac, char **av)
 	char	*msg;
 
 	if (ac != 3)
-		ft_putstr("The format must be as follows : \
-			./program [pid] [message]");
+	{
+		ft_putstr("The format must be as follows : ./program [pid] [message]");
+	}
 	else
 	{
 		sid = ft_atoi(av[1]);
@@ -33,17 +34,20 @@ int	main(int ac, char **av)
 			sid = send_message(sid, msg);
 			if (sid == 0)
 				return (EXIT_SUCCESS);
-			ft_putstr("Connection failed : no such process");
+			ft_putstr("No such process");
 		}
 		else
+		{
 			ft_putstr("Invalid process id or An empty message provided");
+		}
 	}
 	return (EXIT_FAILURE);
 }
 
 void	signal_handler(int sig)
 {
-	ft_putstr("Message sent successfully !!");
+	(void)sig;
+	ft_putstr("Message sent successfully \xE2\x9C\x85\n");
 }
 
 int	send_message(pid_t pid, char *str)

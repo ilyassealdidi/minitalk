@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 10:36:25 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/01/21 13:20:16 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/01/21 13:54:33 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	show_pid(pid_t pid);
 void	receive_byte(int sig, siginfo_t *info, void *context);
 
-int	main(int argc, char **argv)
+int	main(void)
 {
 	struct sigaction	sa;
 
@@ -40,7 +40,6 @@ void	receive_byte(int sig, siginfo_t *info, void *context)
 {
 	static char	c = 0;
 	static char	counter = 0;
-	static char	client_pid = 0;
 
 	(void)context;
 	if (sig == SIGUSR1)

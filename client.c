@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 17:54:48 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/01/21 16:54:25 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/01/22 13:44:31 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,6 @@ int	main(int ac, char **av)
 	return (EXIT_FAILURE);
 }
 
-void	signal_handler(int sig)
-{
-	(void)sig;
-	ft_putstr("Message sent successfully \xE2\x9C\x85\n");
-}
-
 int	send_message(pid_t pid, char *str)
 {
 	int				i;
@@ -63,16 +57,10 @@ int	send_message(pid_t pid, char *str)
 		{
 			if (kill(pid, SIGUSR1 + !(mask & *str)) < 0)
 				return (-1);
-			usleep(50);
+			usleep(100);
 			mask <<= 1;
 		}
 		str++;
-	}
-	i = 0;
-	while (i++ < 8)
-	{
-		kill(pid, SIGUSR2);
-		usleep(50);
 	}
 	return (0);
 }

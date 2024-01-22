@@ -1,4 +1,6 @@
 *.out
+client_bonus
+server_bonus
 .normignore
 .vscode/
 *.a

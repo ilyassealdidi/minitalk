@@ -16,13 +16,18 @@ $(NAME)	: server.c utils.c minitalk.h
 $(NAME2): client.c utils.c minitalk.h
 	cc $(CFLAGS) client.c utils.c -o client
 
-bonus	: client_bonus server_bonus utils_bonus minitalk_bonus.h
+bonus	: client_bonus server_bonus minitalk_bonus.h
 
+client_bonus : client_bonus.c utils_bonus.c minitalk_bonus.h
+	cc $(CFLAGS) client_bonus.c utils_bonus.c -o client_bonus
 
+server_bonus : server_bonus.c utils_bonus.c minitalk_bonus.h
+	cc $(CFLAGS) server_bonus.c utils_bonus.c -o server_bonus
 
 clean	:
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(NAME2) client_bonus server_bonus
 
 fclean	: clean
 
 re		: fclean all
+

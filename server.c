@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 10:36:25 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/01/21 16:50:14 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/01/22 12:18:05 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ int	main(void)
 	struct sigaction	sa;
 
 	show_pid(getpid());
-	sa.sa_sigaction = &receive_byte;
 	sa.sa_flags = SA_SIGINFO;
+	sa.sa_sigaction = &receive_byte;
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
 	while (1)
-		;
+		pause();
 	return (0);
 }
 
@@ -54,8 +54,6 @@ void	receive_byte(int sig, siginfo_t *info, void *context)
 	counter++;
 	if (counter == 8)
 	{
-		if (!c)
-			kill(info->si_pid, SIGUSR2);
 		write(1, &c, 1);
 		counter = 0;
 		c = 0;

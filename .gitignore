@@ -8,6 +8,7 @@ server_bonus
 main.c
 *.dSYM
 *.out
+private
 server
 client
 main

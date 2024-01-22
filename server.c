@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 10:36:25 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/01/22 15:20:27 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/01/22 15:29:58 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,8 @@ void	receive_byte(int sig, siginfo_t *info, void *context);
 int	main(void)
 {
 	struct sigaction	sa;
-	// struct sigaction	sa2;
 
 	show_pid(getpid());
-	// sa.sa_flags = SA_SIGINFO;
-	// sa.sa_sigaction = &receive_byte;
-	// sigemptyset(&sa.sa_mask);
-	// sigaddset(&sa.sa_mask, SIGUSR2);
-	// sa2.sa_flags = SA_SIGINFO;
-	// sa2.sa_sigaction = &receive_byte;
-	// sigemptyset(&sa2.sa_mask);
-	// sigaddset(&sa2.sa_mask, SIGUSR1);
-	// sigaction(SIGUSR1, &sa, NULL);
-	// sigaction(SIGUSR2, &sa2, NULL);
-
 	sa.sa_flags = SA_SIGINFO;
 	sa.sa_sigaction = &receive_byte;
 	sigaction(SIGUSR1, &sa, NULL);

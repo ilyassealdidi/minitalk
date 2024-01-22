@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 14:43:17 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/01/21 14:43:20 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/01/22 15:28:52 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	send_message(pid_t pid, char *str)
 		{
 			if (kill(pid, SIGUSR1 + !(mask & *str)) < 0)
 				return (-1);
-			usleep(50);
+			usleep(500);
 			mask <<= 1;
 		}
 		str++;
@@ -72,7 +72,7 @@ int	send_message(pid_t pid, char *str)
 	while (i++ < 8)
 	{
 		kill(pid, SIGUSR2);
-		usleep(50);
+		usleep(500);
 	}
 	return (0);
 }

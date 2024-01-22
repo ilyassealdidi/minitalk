@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 14:43:10 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/01/21 14:43:12 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/01/22 15:34:30 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,17 @@ void	show_pid(pid_t pid)
 
 void	receive_byte(int sig, siginfo_t *info, void *context)
 {
-	static char	c = 0;
-	static char	counter = 0;
+	static char		c = 0;
+	static char		counter = 0;
+	static pid_t	client_pid = 0;
 
 	(void)context;
+	if (client_pid != info->si_pid)
+	{
+		c = 0;
+		counter = 0;
+	}
+	client_pid = info->si_pid;
 	if (sig == SIGUSR1)
 		c += 1 << counter;
 	counter++;

@@ -6,13 +6,12 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 17:54:48 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/01/22 13:44:31 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/01/22 15:21:42 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	signal_handler(int sig);
 int		send_message(pid_t pid, char *str);
 
 int	main(int ac, char **av)
@@ -30,9 +29,8 @@ int	main(int ac, char **av)
 		msg = av[2];
 		if (sid > 0 && msg[0])
 		{
-			signal(SIGUSR2, signal_handler);
 			sid = send_message(sid, msg);
-			if (sid == 0)
+			if (sid == EXIT_SUCCESS)
 				return (EXIT_SUCCESS);
 			ft_putstr("No such process");
 		}
@@ -56,11 +54,11 @@ int	send_message(pid_t pid, char *str)
 		while (++i < 8)
 		{
 			if (kill(pid, SIGUSR1 + !(mask & *str)) < 0)
-				return (-1);
-			usleep(100);
+				return (EXIT_FAILURE);
+			usleep(500);
 			mask <<= 1;
 		}
 		str++;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }

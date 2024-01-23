@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 14:43:10 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/01/22 15:34:30 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/01/23 09:15:15 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(void)
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
 	while (1)
-		;
+		pause();
 	return (0);
 }
 

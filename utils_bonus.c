@@ -60,5 +60,7 @@ int	ft_atoi(const char *str)
 			return (-1 * (sign == 1));
 		num = num * 10 + *str++ - '0';
 	}
+	if (!*str)
+		return (0);
 	return (num * sign);
 }
